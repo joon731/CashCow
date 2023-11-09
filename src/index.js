@@ -55,6 +55,9 @@ app.get('/login', (request, response) => {
 app.get('/home', (request, response) => {
     response.render('home');
 });
+app.get('/updateEmail', (request, response) => {
+    response.render('updateEmail');
+});
 
 app.listen(port, () => {
     console.log('port connected');
