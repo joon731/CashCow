@@ -46,8 +46,6 @@ app.post('/login', async (req, res) => {
 })
 app.get('/purchase', (request, response) => {
     response.render('purchase');
-    exec("./balanceUpdate: ", (error, stdout, stderr) => console.log(stdout))
-    
 });
 app.get('/login', (request, response) => {
     response.render('login');
@@ -57,6 +55,9 @@ app.get('/home', (request, response) => {
 });
 app.get('/updateEmail', (request, response) => {
     response.render('updateEmail');
+    const {exec} = require("child_process")
+    exec("./updateInfo: ", (error, stdout, stderr) => console.log(stdout))
+
 });
 
 app.listen(port, () => {
