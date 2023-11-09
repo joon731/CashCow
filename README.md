@@ -20,7 +20,7 @@ Cash COW Shopping Website is a simple website for making purchases. Its intuitiv
 ### Technologies Used
 
 - Front-end: HTML, CSS
-- Back-end: NodeJS, C
+- Back-end: NodeJS, C, Express
 - Database: MongDB
 
 ## Installation (for x86-64)
