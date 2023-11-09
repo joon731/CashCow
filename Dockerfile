@@ -1,0 +1,41 @@
+# Use an official Ubuntu 16.04 runtime as a parent image
+FROM ubuntu:16.04
+LABEL maintainer="Joon Ho Byun <joon731@korea.ac.kr>"
+
+# Install necessary packages: git, nodejs, npm
+RUN apt-get update \
+    && apt-get install -y git nodejs npm \
+    && mkdir /docker
+
+# Set up NodeSource repository
+RUN mkdir -p /etc/apt/keyrings \
+    && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key |  gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+
+ENV NODE_MAJOR=16
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x xenial main" |  tee /etc/apt/sources.list.d/nodesource.list
+RUN apt-get update && apt-get install -y nodejs --allow-unauthenticated
+
+# Clean up unnecessary files
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory to /docker
+WORKDIR /docker
+
+# Clone the CashCow repository
+RUN git clone https://github.com/joon731/CashCow.git .
+
+# Install Node.js dependencies
+RUN npm install express mongoose
+
+# Install PHP
+RUN apt-get update && apt-get install -y php
+
+# Set environment variable for MongoDB connection
+ENV MONGO_URL="mongodb+srv://root:password1234@cluster0.ynthyfv.mongodb.net/?retryWrites=true&w=majority"
+
+# Expose port 3000 from the container
+EXPOSE 3000
+
+# Command to run the application
+CMD ["node", "src/index.js"]
