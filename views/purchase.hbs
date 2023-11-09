@@ -51,11 +51,13 @@
     <script>
         // Extract the total price parameter from the URL
         var urlParams = new URLSearchParams(window.location.search);
-        var totalPrice = urlParams.get('totalPrice');
+        // var totalPrice = urlParams.get('totalPrice');
+        var value = localStorage.getItem('key');
 
         // Display the total price on the page
-        document.getElementById('totalPriceOutput').innerText = 'Total Price: $' + totalPrice;
+        document.getElementById('totalPriceOutput').innerText = 'Total Price: $'  + value //+ totalPrice;
     </script>
+    
 </div>
 </body>
 </html>
