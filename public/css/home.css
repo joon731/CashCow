@@ -58,6 +58,14 @@ margin-left:50px;
 color:rgb(255, 255, 255);
 font-size:30px;
 }
+.all-price{
+    background-color: #fff; 
+    padding: 0px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.386);
+    max-width: 800px;
+    margin: 0 auto; 
+    text-align: center; 
+}
 
 .container{
     background-color: #fff; 
@@ -68,7 +76,7 @@ font-size:30px;
     text-align: center; 
 }
 .product-list{
-margin-top: 150px;
+margin-top: 30px;
 display:flex;
 flex-wrap:wrap;
 }

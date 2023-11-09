@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,17 +25,22 @@
 
 
 <!--Product Listings-->
-<div class = "total">
+
     <h1 
 </div>
+<div class="all-price">
+    <div class="total-price">
+        <div class="product-cost"> total-price: <input type="text" id="total" value="0" size="8" style='font-size:18pt' readonly>$</div>
+    </div>
 <div class="container">
+
     <div class="product-list">
         <div class="product-form">
             <img class="product-pic" src="p1.png" width="200" height="200">
             <div class="prodcut-type">Dress</div>
             <div class="product-cost">$20.99</div>
             <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" type="checkbox" name="Dress" value="Dress"> add to cart </label>
+            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Dress" value="20.99"> add to cart </label>
         </div>
     
         <div class="product-form">
@@ -43,7 +48,7 @@
             <div class="prodcut-type">Mouse</div>
             <div class="product-cost">$15.99</div>
             <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" type="checkbox" name="Mouse" value="Mouse"> add to cart </label>
+            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Mouse" value="15.99"> add to cart </label>
         </div>
     
         <div class="product-form">
@@ -51,7 +56,7 @@
             <div class="prodcut-type">Keyboard</div>
             <div class="product-cost">$30.99</div>
             <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" type="checkbox" name="Keyboard" value="Keyboard"> add to cart </label>
+            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Keyboard" value="30.99"> add to cart </label>
         </div>
     
         <div class="product-form">
@@ -59,7 +64,7 @@
             <div class="prodcut-type">Sweatshirt</div>
             <div class="product-cost">$25.99</div>
             <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" type="checkbox" name="Sweatshirt" value="Sweatshirt"> add to cart </label>
+            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Sweatshirt" value="25.99"> add to cart </label>
         </div>
     
         <div class="product-form">
@@ -67,7 +72,7 @@
             <div class="prodcut-type">Nikon Camera</div>
             <div class="product-cost">$1200.99</div>
             <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" type="checkbox" name="Nikon Camera" value="Nikon Camera"> add to cart </label>
+            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Nikon Camera" value="1200.99"> add to cart </label>
         </div>
     
         <div class="product-form">
@@ -75,7 +80,7 @@
             <div class="prodcut-type">Iphone</div>
             <div class="product-cost">$1300.99</div>
             <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" type="checkbox" name="Iphone" value="Iphone"> add to cart </label>
+            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Iphone" value="1300.99"> add to cart </label>
         </div>
     
         <div class="product-form">
@@ -83,7 +88,7 @@
             <div class="prodcut-type">Vacuum Cleaner</div>
             <div class="product-cost">$13.99</div>
             <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" type="checkbox" name="Vacuum Cleaner" value="Vacuum Cleaner"> add to cart </label>
+            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Vacuum Cleaner" value="13.99"> add to cart </label>
         </div>
     
         <div class="product-form">
@@ -91,9 +96,32 @@
             <div class="prodcut-type">CPU</div>
             <div class="product-cost">$13.99</div>
             <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" type="checkbox" name="cpu" value="cpu"> add to cart </label>
+            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="CPU" value="13.99"> add to cart </label>
         </div>
         </div>
 </div>
+<script type="text/javascript">
+   let values = new Array(8); // 배열을 선언하여 값 불러오기
+
+   values[0] = parseFloat(document.getElementById('Dress').value);
+   values[1] = parseFloat(document.getElementById('Mouse').value);
+   values[2] = parseFloat(document.getElementById('Keyboard').value);
+    values[3] = parseFloat(document.getElementById('Sweatshirt').value);
+    values[4] = parseFloat(document.getElementById('Nikon Camera').value);
+    values[5] = parseFloat(document.getElementById('Iphone').value);
+    values[6] = parseFloat(document.getElementById('Vacuum Cleaner').value);
+    values[7] = parseFloat(document.getElementById('CPU').value);
+   
+   let total = parseFloat(document.getElementById('total').value);
+
+   function sum(box) {
+      if(box.checked){
+    total += parseFloat(box.value);
+}else{
+total -= parseFloat(box.value);
+}
+      document.getElementById('total').value = total.toFixed(2);   
+   }
+</script>
 </body>
 </html>
