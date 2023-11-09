@@ -27,7 +27,7 @@ Cash COW Shopping Website is a simple website for making purchases. Its intuitiv
 
 1. Download the Dockerfile from the repository .
 2. Navigate to the directory where the Dockerfile is located.
-3. Build an image with the Dockerfile (This may take more than 15 minutes):
+3. Build an image with Dockerfile
     ```bash
     https://drive.google.com/file/d/1JF4eGDw_G-5KKrJGdCcRHHbKz6Jy-lhV/view?usp=sharing
     ```
