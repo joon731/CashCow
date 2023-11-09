@@ -9,7 +9,6 @@ struct User {
 
 // Function to get user input from the console
 void get_user_input(char *buffer, size_t size) {
-    printf("Enter input: ");
     fgets(buffer, size, stdin);
 
     // Remove the newline character if present
@@ -24,11 +23,11 @@ void save_user_data(const struct User *user) {
     FILE *file = fopen("user_data.txt", "a"); // Open the file in append mode
 
     if (file != NULL) {
-        fprintf(file, "%s,%s\n", user->name, user->password);
+        printf(file, "%s,%s\n", user->name, user->password);
         fclose(file);
         printf("User data saved successfully.\n");
     } else {
-        fprintf(stderr, "Error: Unable to open file for writing.\n");
+        printf(stderr, "Error: Unable to open file for writing.\n");
     }
 }
 
@@ -42,22 +41,6 @@ struct buyer_transaction {
 // Function to initialize the buyer_transaction 
 void init_buyer_transaction(struct buyer_transaction *transaction, const char *user_id, const char *tid) {
     strncpy(transaction->user_id, user_id, sizeof(transaction->user_id) - 1);
-
-}
-
-// Function to handle the submit address action
-void on_submit_address_clicked(struct buyer_transaction *transaction) {
-
-
-    if (strlen(transaction->address) > 0) {
-
-        printf("Address: %s\n", transaction->address);
-
-        printf("Transaction closed.\n");
-    } else {
-
-        fprintf(stderr, "Too Short: You need to write your address.\n");
-    }
 
 }
 
