@@ -25,7 +25,7 @@ app.post('/login', async (req, res) => {
     try {
         const check = await LogInCollection.findOne({ name: req.body.name })
 
-        if (check.password === req.body.password || check.name === req.body.name) {
+        if (check.password === req.body.password) {
             res.render('home')
         }
 

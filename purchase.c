@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "mongo.js"
-#include "index.js"
 
 struct User {
     char name[50];
