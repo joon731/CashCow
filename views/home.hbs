@@ -18,8 +18,7 @@
             <div id="bannerText">Welcome to Cash COW</div>
         </div>
         <div class="cart-form">
-            <input type="submit" value="Checkout" class="submit-btn">
-
+            <a href="/purchase">Link to second page</a>
         </div>
     </header>
 
@@ -117,11 +116,18 @@
    function sum(box) {
       if(box.checked){
     total += parseFloat(box.value);
-}else{
-total -= parseFloat(box.value);
-}
+    }else{
+    total -= parseFloat(box.value);
+    }
       document.getElementById('total').value = total.toFixed(2);   
    }
+   function buyCart(){
+    <a href="/purchase">Link to second page</a>
+    }
+
+    
+
+
 </script>
 </body>
 </html>
