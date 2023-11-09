@@ -13,15 +13,11 @@ const publicPath = path.join(__dirname, '../public')
 console.log(publicPath);
 
 app.set('view engine', 'hbs')
-app.set('views', webPath)
+app.set('views', webPath)   
 app.use(express.static(publicPath))
 
 app.get('/', (req, res) => {
     res.render('login')
-})
-
-app.get('/home', (req, res) => {
-    res.render('purchase')
 })
 
 app.post('/login', async (req, res) => {
@@ -46,6 +42,9 @@ app.post('/login', async (req, res) => {
 
 
 })
+app.get('/purchase', (request, response) => {
+    response.render('purchase');
+});
 
 app.listen(port, () => {
     console.log('port connected');

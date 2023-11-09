@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Purchase Completed!</title>
     <link rel="stylesheet" href="css/purchase.css">
+    <script src ="balanceUpdate.js"></script>
 </head>
 <body>
 
@@ -45,8 +46,16 @@
 <div class="purchase-form">
     <div class="thanks">Thank you for Purchase!</div>
     <div>Your Cart</div>
-    <div>CPU $13</div>
-    <div>DeskTop $2000</div>
+    <p id="totalPriceOutput"></p>
+
+    <script>
+        // Extract the total price parameter from the URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var totalPrice = urlParams.get('totalPrice');
+
+        // Display the total price on the page
+        document.getElementById('totalPriceOutput').innerText = 'Total Price: $' + totalPrice;
+    </script>
 </div>
 </body>
 </html>
