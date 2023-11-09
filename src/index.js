@@ -1,7 +1,6 @@
 const express = require("express")
 const path = require("path")
 const app = express()
-const {exec} = require("child_process")
 const LogInCollection = require("./mongo")
 const port = process.env.PORT || 3000
 app.use(express.json())
@@ -16,14 +15,21 @@ app.set('view engine', 'hbs')
 app.set('views', webPath)   
 app.use(express.static(publicPath))
 
+app.get('/', (req, res) => {
+    res.render('login')
+})
+
 app.post('/login', async (req, res) => {
 
     try {
         const check = await LogInCollection.findOne({ name: req.body.name })
 
         if (check.password === req.body.password) {
-            exec("./myExecutable",  (error, stdout, stderr) => console.log(stdout))
+            const {exec} = require("child_process")
+            exec("./inputCheck",  (error, stdout, stderr) => console.log(stdout))
             res.render('home')
+
+
         }
 
         else {
@@ -40,6 +46,8 @@ app.post('/login', async (req, res) => {
 })
 app.get('/purchase', (request, response) => {
     response.render('purchase');
+    exec("./balanceUpdate: ", (error, stdout, stderr) => console.log(stdout))
+    
 });
 app.get('/login', (request, response) => {
     response.render('login');
