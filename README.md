@@ -1,5 +1,12 @@
 # Cash COW
 
+## Team Cash COW
+
+- **Joon Ho Byun (Leader)**
+- **Hayden Young**
+- **Shareen Rai**
+- **Jung Hwi Hun**
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -22,21 +29,8 @@ Cash COW Shopping Website is a simple website for making purchases. Its intuitiv
 2. Navigate to the directory where the Dockerfile is located.
 3. Build an image with the Dockerfile (This may take more than 15 minutes):
     ```bash
-    insert dockerfile here
+    https://drive.google.com/file/d/1JF4eGDw_G-5KKrJGdCcRHHbKz6Jy-lhV/view?usp=sharing
     ```
-4. Run from the image built with local host: 3000:
-    ```bash
-    insert port number/ local host
-    ```
-5. Done!
-
-**Note:** The web-server and the database have been initialized in a single Dockerfile.
-
-## Team Cash COW
-
-- **Joon Ho Byun (Leader)**
-- **Hayden Young**
-- **Shareen Rai**
-- **Jung Hwi Hun**
+4. Run from the image built with local host: 3000
 
 
