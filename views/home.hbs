@@ -19,6 +19,7 @@
         </div>
         <div class="cart-form">
             <a href="/purchase">Link to second page</a>
+            
         </div>
     </header>
 
@@ -119,11 +120,9 @@
     }else{
     total -= parseFloat(box.value);
     }
-      document.getElementById('total').value = total.toFixed(2);   
+      document.getElementById('total').value = total.toFixed(2);
+      localStorage.setItem('key',total);
    }
-   function buyCart(){
-    <a href="/purchase">Link to second page</a>
-    }
 
     
 
