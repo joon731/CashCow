@@ -41,6 +41,12 @@ app.post('/login', async (req, res) => {
 app.get('/purchase', (request, response) => {
     response.render('purchase');
 });
+app.get('/login', (request, response) => {
+    response.render('login');
+});
+app.get('/home', (request, response) => {
+    response.render('home');
+});
 
 app.listen(port, () => {
     console.log('port connected');
