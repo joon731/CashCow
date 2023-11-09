@@ -11,7 +11,7 @@ mongoose.connect("mongodb+srv://root:password1234@cluster0.tqxkiwp.mongodb.net/?
 const logInSchema=new mongoose.Schema({
     name:{
         type:String,
-        required:true
+        required:false
     },
     password:{
         type:String,
