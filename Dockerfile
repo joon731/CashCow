@@ -2,22 +2,20 @@
 FROM ubuntu:16.04
 LABEL maintainer="Joon Ho Byun <joon731@korea.ac.kr>"
 
-# Install necessary packages: git, nodejs, npm
-RUN apt-get update \
-    && apt-get install -y git nodejs npm \
-    && mkdir /docker
+# Update package repositories and install necessary packages: git, nodejs, npm, and required tools
+RUN apt-get update && apt-get install -y gnupg curl software-properties-common
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get install -y git nodejs npm
 
-# Set up NodeSource repository
-RUN mkdir -p /etc/apt/keyrings \
-    && curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key |  gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+# Set up NodeSource repository and add GPG key
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 1655A0AB68576280
+RUN echo "deb https://deb.nodesource.com/node_16.x xenial main" > /etc/apt/sources.list.d/nodesource.list
 
-ENV NODE_MAJOR=16
-RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x xenial main" |  tee /etc/apt/sources.list.d/nodesource.list
-RUN apt-get update && apt-get install -y nodejs --allow-unauthenticated
+# Update package repositories again and install Node.js
+RUN apt-get update && apt-get install -y nodejs
 
 # Clean up unnecessary files
-RUN apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory to /docker
 WORKDIR /docker
