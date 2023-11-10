@@ -2,17 +2,20 @@
 FROM ubuntu:16.04
 LABEL maintainer="Joon Ho Byun <joon731@korea.ac.kr>"
 
-# Update package repositories and install necessary packages: git, nodejs, npm, and required tools
-RUN apt-get update && apt-get install -y gnupg curl software-properties-common
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get install -y git nodejs npm
+RUN apt-get update
+RUN apt-get install git -y
+# Install Node.js
 
-# Set up NodeSource repository and add GPG key
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 1655A0AB68576280
-RUN echo "deb https://deb.nodesource.com/node_16.x xenial main" > /etc/apt/sources.list.d/nodesource.list
-
-# Update package repositories again and install Node.js
-RUN apt-get update && apt-get install -y nodejs
+ENV NODE_VERSION=16.13.0
+RUN apt install -y curl
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+ENV NVM_DIR=/root/.nvm
+RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
+ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+RUN node --version
+RUN npm --version
 
 # Clean up unnecessary files
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
