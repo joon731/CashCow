@@ -1,65 +1,71 @@
-const express = require("express")
-const path = require("path")
-const app = express()
-const LogInCollection = require("./mongo")
-const port = process.env.PORT || 3000
-app.use(express.json())
-app.use(express.static('views/images'))
-app.use(express.urlencoded({ extended: false }))
+const express = require("express");
+const path = require("path");
+const app = express();
+const LogInCollection = require("./mongo");
+const port = process.env.PORT || 3000;
+const session = require('express-session');
 
-const webPath = path.join(__dirname, '../views')
-const publicPath = path.join(__dirname, '../public')
+const webPath = path.join(__dirname, '../views');
+const publicPath = path.join(__dirname, '../public');
 console.log(publicPath);
 
-app.set('view engine', 'hbs')
-app.set('views', webPath)   
-app.use(express.static(publicPath))
+app.use(express.json());
+app.use(express.static('views/images'));
+app.use(express.urlencoded({ extended: false }));
+
+app.use(session({
+    secret: 'your-secret-key', // Replace with a strong secret key
+    resave: false,
+    saveUninitialized: true,
+}));
+
+const isAuthenticated = (req, res, next) => {
+    if (req.session && req.session.user) {
+        return next();
+    } else {
+        res.render('login');
+    }
+};
+
+app.set('view engine', 'hbs');
+app.set('views', webPath);
+app.use(express.static(publicPath));
 
 app.get('/', (req, res) => {
-    res.render('login')
-})
+    res.render('login');
+});
 
 app.post('/login', async (req, res) => {
-
     try {
-        const check = await LogInCollection.findOne({ name: req.body.name })
+        const check = await LogInCollection.findOne({ name: req.body.name });
 
-        if (check.password === req.body.password) {
-            const {exec} = require("child_process")
-            exec("./inputCheck",  (error, stdout, stderr) => console.log(stdout))
-            res.render('home')
-
-
+        if (check && check.password === req.body.password) {
+            req.session.user = req.body.name;
+            res.redirect('/home');
+        } else {
+            res.send("Incorrect password");
         }
-
-        else {
-            res.send("incorrect password")
-        }
-
-    } 
-    
-    catch (e) {
-        res.send("wrong details")
+    } catch (e) {
+        res.send("Wrong details");
     }
-
-
-})
-app.get('/purchase', (request, response) => {
-    response.render('purchase');
 });
-app.get('/login', (request, response) => {
-    response.render('login');
-});
+
+app.use(isAuthenticated); // Middleware to check if the user is authenticated
+
 app.get('/home', (request, response) => {
     response.render('home');
 });
+
+app.get('/purchase', (request, response) => {
+    response.render('purchase');
+});
+
 app.get('/updateEmail', (request, response) => {
     response.render('updateEmail');
-    const {exec} = require("child_process")
-    exec("./updateInfo: ", (error, stdout, stderr) => console.log(stdout))
-
+    const { exec } = require("child_process");
+    exec("./updateInfo: ", (error, stdout, stderr) => console.log(stdout));
 });
 
 app.listen(port, () => {
-    console.log('port connected');
-})
+    console.log('Port connected');
+});
