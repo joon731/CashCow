@@ -27,7 +27,7 @@ WORKDIR /docker
 RUN git clone https://github.com/joon731/CashCow.git .
 
 # Install Node.js dependencies
-RUN npm install express mongoose express-session
+RUN npm install express mongoose express-session bcrypt
 
 # Install PHP
 RUN apt-get update && apt-get install -y php
