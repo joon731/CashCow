@@ -30,6 +30,7 @@ Cash COW Shopping Website is a simple website for making purchases. Its intuitiv
     [https://drive.google.com/file/d/1JF4eGDw_G-5KKrJGdCcRHHbKz6Jy-lhV/view?usp=sharing](https://drive.google.com/file/d/1-8o1DtWa7aM7fjE3ct4fynMClrb31mlG/view?usp=sharing)https://drive.google.com/file/d/1-8o1DtWa7aM7fjE3ct4fynMClrb31mlG/view?usp=sharing
     ```
 4. Run on port value 3000
-5. Please use for main login page (id: johnsmith password: password123
+5. run on [https://localhost:3000/]
+6. Please use for main login page (id: johnsmith password: password123)
 
 
