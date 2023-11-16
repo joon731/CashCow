@@ -40,7 +40,7 @@ struct buyer_transaction {
 
 // Function to initialize the buyer_transaction 
 void init_buyer_transaction(struct buyer_transaction *transaction, const char *user_id, const char *tid) {
-    strncpy(transaction->user_id, user_id, sizeof(transaction->user_id) - 1);
+    strncpy(transaction->user_id, user_id, strlen(transaction->user_id) - 1);
 
 }
 
