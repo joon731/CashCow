@@ -3,8 +3,9 @@ const path = require("path");
 const fs = require("fs");
 const https = require("https");
 const bcrypt = require("bcrypt");
-const session = require('express-session'); // Import express-session
+const session = require('express-session');
 const LogInCollection = require("./mongo");
+const rateLimit = require("express-rate-limit");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -17,11 +18,11 @@ app.use(express.json());
 app.use(express.static('views/images'));
 app.use(express.urlencoded({ extended: false }));
 
-app.use(session({ // Configure express-session
+app.use(session({
     secret: 'cashcow',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true } // Set to true if using HTTPS
+    cookie: { secure: true }
 }));
 
 app.set('view engine', 'hbs');
@@ -37,11 +38,15 @@ const isAuthenticated = (req, res, next) => {
     }
 };
 
-app.get('/', (req, res) => {
-    res.render('login');
+// Rate limit middleware
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 3, // limit each IP to 3 requests per windowMs
+    message: 'Too many login attempts, please try again later.'
 });
 
-app.post('/login', async (req, res) => {
+// Apply rate limit to the /login route
+app.post('/login', limiter, async (req, res) => {
     try {
         const check = await LogInCollection.findOne({ name: req.body.name });
         if (check && (await bcrypt.compare(req.body.password, check.password))) {
