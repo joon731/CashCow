@@ -1,0 +1,26 @@
+*{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    box-sizing: border-box;
+    border: none;
+    }
+    
+    body{
+        background-image: url('views/images/mainbgimg.png'); 
+        background-size: cover;
+        background-position: center;
+        background-repeat: repeat;
+        height: 100vh; 
+        margin: 0; 
+    }
+    
+    
+    .newEmail-form{
+        background-color: greenyellow;
+        width: 300px;
+        padding: 20px;
+        border-radius: 5px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 150px;
+    }
