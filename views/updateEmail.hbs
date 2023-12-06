@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Update Email and Password</title>
+    <link rel="stylesheet" href="css/updateEmail.css">
     <script>
         function updateEmail() {
             var newEmail = document.getElementById('newEmail').value;
@@ -15,13 +16,15 @@
     </script>
 </head>
 <body>
+    <div class="newEmail-form">
     <h1>Update Email</h1>
     <!-- Input box for the new email and password -->
     <p><label for="newEmail">Enter New Email:</label>
         <input type="email" id="newEmail" name="newEmail" required></p>
-    
+
     <p><label for="newPW">Enter New Email password:</label>
         <input type="password" id="newPW" name="newPW" required> </p>
     <button onclick="updateEmail()">Update Email</button>
+    </div>
 </body>
 </html>
