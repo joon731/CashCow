@@ -1,36 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>CashCOW login</title>
     <link rel="stylesheet" href="css/login.css">
     <script src="https://kit.fontawesome.com/881074fbb0.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-image: url('mainbgimg.png');
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
 
+        /*Title*/    
+        .title-form {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .title-form h1 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+        }
+
+        /*Login*/
+        .login-form {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for a subtle effect */
+            max-width: 300px;
+            margin: auto;
+            padding: 20px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .text-field {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .submit-btn {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .forgot-password-link {
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
 </head>
-
 <body>
-    <body style="background-image:url('mainbgimg.png')"></body>
 
     <!--Title-->    
     <div class="title-form">
         <h1>Cash COW</h1>
     </div>
-    <i class="fa-sharp fa-solid fa-ram"></i>
-
 
     <!--Login-->
-    <div class="login-form">
-        
-        <form action = "/login" method = "post">
-            <input type="text"  name ="name" class="text-field" placeholder="id">
-            <input type="password" name = "password" class="text-field" placeholder="password">
-            <input type="submit" class="submit-btn">
+    <div class="login-form">   
+        <form action="/login" method="post">
+            <input type="text" name="name" class="text-field" placeholder="ID">
+            <input type="password" name="password" class="text-field" placeholder="Password">
+            <input type="submit" class="submit-btn" value="Login">
         </form>
 
-        <a href='/updateEmail' 
-        target='_blank'
-        style="color: white"
-        >
-        Forgot Password</a>
+        <a href='/updateEmail' class="forgot-password-link">Forgot Password</a>
     </div>
 
 </body>

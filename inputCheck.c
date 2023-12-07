@@ -2,66 +2,76 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <unistd.h>
+#include <ctype.h>
 
 struct User {
     char name[50];
     char password[50];
 };
 
-// Function to get user input from the console with type check
-void get_user_input(char *buffer, size_t size) {
+void get_user_input(char *buffer, size_t size, bool alphanumeric) {
     while (true) {
-        printf("Enter %s: ", buffer);
+        puts("Enter user input: ");
         fgets(buffer, size, stdin);
 
-        // Remove the newline character if present
         size_t len = strlen(buffer);
         if (len > 0 && buffer[len - 1] == '\n') {
             buffer[len - 1] = '\0';
         }
 
-        if (strlen(buffer) > 0) {
-            break; // Break the loop if the input is valid
+        bool valid = true;
+        for (size_t i = 0; i < len - 1; i++) {
+            if (alphanumeric && !isalnum(buffer[i])) {
+                valid = false;
+                break;
+            }
+        }
+
+        if (valid) {
+            break;
         } else {
-            printf("Invalid %s. Please try again.\n", buffer);
+            puts("Invalid input. Please try again.");
         }
     }
 }
 
-// Define buyer_transaction
+void get_password(char *buffer, size_t size) {
+    char *password = getpass("Enter password: ");
+    strncpy(buffer, password, size - 1);
+    buffer[size - 1] = '\0';
+}
+
 struct buyer_transaction {
     char user_id[50];
     char tid[50];
     char address[200];
 };
 
-// Function to initialize the buyer_transaction 
 void init_buyer_transaction(struct buyer_transaction *transaction, const char *user_id, const char *tid) {
-    strncpy(transaction->user_id, user_id, sizeof(transaction->user_id) - 1);
-    strncpy(transaction->tid, tid, sizeof(transaction->tid) - 1);
-}
+    size_t user_id_len = strlen(user_id);
+    size_t tid_len = strlen(tid);
 
-// Function to handle submit address action (not implemented in your provided code)
-void on_submit_address_clicked(const struct buyer_transaction *transaction) {
-    // Implement your logic here
-    printf("Address submitted successfully.\n");
+    if (user_id_len < sizeof(transaction->user_id) && tid_len < sizeof(transaction->tid)) {
+        strncpy(transaction->user_id, user_id, sizeof(transaction->user_id) - 1);
+        transaction->user_id[sizeof(transaction->user_id) - 1] = '\0';
+
+        strncpy(transaction->tid, tid, sizeof(transaction->tid) - 1);
+        transaction->tid[sizeof(transaction->tid) - 1] = '\0';
+    } else {
+        puts("Invalid input for user_id or tid.");
+    }
 }
 
 int main() {
-    // Get user input for name and password
     struct User user;
-    get_user_input(user.name, sizeof(user.name));
-    get_user_input(user.password, sizeof(user.password));
+    get_user_input(user.name, sizeof(user.name), true); // Alphanumeric check
+    get_password(user.password, sizeof(user.password));
 
-    // Save user data to a file (removed for security reasons)
-    // save_user_data(&user); 
-
-    // Initialize buyer_transaction 
     struct buyer_transaction transaction;
-    init_buyer_transaction(&transaction, "John Smith", "transaction456");
+    init_buyer_transaction(&transaction, "JohnSmith123", "transaction456");
 
-    // Handle submit address action
-    on_submit_address_clicked(&transaction);
+    memset(user.password, 0, sizeof(user.password));
 
     return 0;
 }

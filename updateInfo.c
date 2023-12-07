@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "index.js"
 
 void updateEmail(char* newEmail) {
-
-    printf("Email updated to: %s\n", newEmail);
+    fputs("Email updated to:\n", stdout);
+    fputs(newEmail, stdout);
+    putchar('\n');
 }
 
 int main(int argc, char *argv[]) {
@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
         char* newEmail = argv[1];
         updateEmail(newEmail);
     } else {
-        printf("Usage: %s <newEmail>\n", argv[0]);
+        fputs("Usage: ./your_program <newEmail>\n", stderr);
     }
 
     return 0;
