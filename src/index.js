@@ -70,8 +70,33 @@ app.get('/login', (req, res) => {
 
 app.use(isAuthenticated);
 
-app.get('/home', (req, res) => {
-    res.render('home');
+app.get('/home', async (req, res) => {
+    try {
+        const user = await LogInCollection.findOne({ name: req.session.user }).lean();
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        // Extract product prices from the user document
+        const prices = {
+            Cpu: user.Cpu,
+            Dress: user.Dress,
+            Iphone: user.Iphone,
+            Keyboard: user.Keyboard,
+            Mouse: user.Mouse,
+            Nikon: user.Nikon,
+            Sweatshirt: user.Sweatshirt,
+            Vacuum: user.Vacuum,
+        };
+
+        // Log prices to the console
+        console.log('Prices from the server:', prices);
+
+        res.render('home', { prices });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 app.get('/purchase', (req, res) => {

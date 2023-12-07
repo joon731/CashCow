@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Product Listing Page</title>
@@ -7,127 +8,124 @@
 
 </head>
 
-
 <body>
     <body style="background-image:url('mainbgimg.png')"></body>
     <header class="header">
-        <div class="title-form"> 
-        <div>Cash COW</div>
+        <div class="title-form">
+            <div>Cash COW</div>
         </div>
 
         <div class="banner">
             <div id="bannerText">Welcome to Cash COW</div>
         </div>
         <div class="cart-form">
-            <a href="/purchase"
-            style="color: white"
-            >Purchase</a>
-            
+            <a href="/purchase" style="color: white">Purchase</a>
         </div>
     </header>
 
-
-<!--Product Listings-->
-</div>
-<div class="all-price">
-    <div class="total-price">
-        <div class="product-cost"> total-price: <input type="text" id="total" value="0" size="8" style='font-size:18pt' readonly>$</div>
+    <!-- Product Listings -->
+    <div class="all-price">
+        <div class="total-price">
+            <div class="product-cost"> total-price: <input type="text" id="total" value="0" size="8" style='font-size:18pt' readonly>$</div>
+        </div>
+        <div class="container">
+            <div class="product-list">
+                <div class="product-form">
+                    <img class="product-pic" src="p1.png" width="200" height="200">
+                    <div class="prodcut-type">Dress</div>
+                    <div class="product-cost">{{prices.Dress}}</div>
+                    <div class="product-delivery"> 2 day delivery</div>
+                    <label>
+                        <input class="cart-checkbox" onclick="sum(this, {{prices.Dress}})" type="checkbox" id="Dress" value="{{prices.Dress}}"> add to cart
+                    </label>
+                </div>
+                <div class="product-form">
+                    <img class="product-pic" src="p2.png" width="200" height="200">
+                    <div class="prodcut-type">Mouse</div>
+                    <div class="product-cost">{{prices.Mouse}}</div>
+                    <div class="product-delivery"> 2 day delivery</div>
+                    <label>
+                        <input class="cart-checkbox" onclick="sum(this, {{prices.Mouse}})" type="checkbox" id="Mouse" value="{{prices.Mouse}}"> add to cart
+                    </label>
+                </div>
+                <div class="product-form">
+                    <img class="product-pic" src="p3.png" width="200" height="200">
+                    <div class="prodcut-type">Keyboard</div>
+                    <div class="product-cost">{{prices.Keyboard}}</div>
+                    <div class="product-delivery"> 2 day delivery</div>
+                    <label>
+                        <input class="cart-checkbox" onclick="sum(this, {{prices.Keyboard}})" type="checkbox" id="Keyboard" value="{{prices.Keyboard}}"> add to cart
+                    </label>
+                </div>
+                <div class="product-form">
+                    <img class="product-pic" src="p4.png" width="200" height="200">
+                    <div class="prodcut-type">Sweatshirt</div>
+                    <div class="product-cost">{{prices.Sweatshirt}}</div>
+                    <div class="product-delivery"> 2 day delivery</div>
+                    <label>
+                        <input class="cart-checkbox" onclick="sum(this, {{prices.Sweatshirt}})" type="checkbox" id="Sweatshirt" value="{{prices.Sweatshirt}}"> add to cart
+                    </label>
+                </div>
+                <div class="product-form">
+                    <img class="product-pic" src="p5.png" width="200" height="200">
+                    <div class="prodcut-type">Nikon Camera</div>
+                    <div class="product-cost">{{prices.Nikon}}</div>
+                    <div class="product-delivery"> 2 day delivery</div>
+                    <label>
+                        <input class="cart-checkbox" onclick="sum(this, {{prices.Nikon}})" type="checkbox" id="Nikon Camera" value="{{prices.Nikon}}"> add to cart
+                    </label>
+                </div>
+                <div class="product-form">
+                    <img class="product-pic" src="p6.png" width="200" height="200">
+                    <div class="prodcut-type">Iphone</div>
+                    <div class="product-cost">{{prices.Iphone}}</div>
+                    <div class="product-delivery"> 2 day delivery</div>
+                    <label>
+                        <input class="cart-checkbox" onclick="sum(this, {{prices.Iphone}})" type="checkbox" id="Iphone" value="{{prices.Iphone}}"> add to cart
+                    </label>
+                </div>
+                <div class="product-form">
+                    <img class="product-pic" src="p7.png" width="200" height="200">
+                    <div class="prodcut-type">Vacuum Cleaner</div>
+                    <div class="product-cost">{{prices.Vacuum}}</div>
+                    <div class="product-delivery"> 2 day delivery</div>
+                    <label>
+                        <input class="cart-checkbox" onclick="sum(this, {{prices.Vacuum}})" type="checkbox" id="Vacuum Cleaner" value="{{prices.Vacuum}}"> add to cart
+                    </label>
+                </div>
+                <div class="product-form">
+                    <img class="product-pic" src="cpu.png" width="200" height="200">
+                    <div class="prodcut-type">CPU</div>
+                    <div class="product-cost">{{prices.Cpu}}</div>
+                    <div class="product-delivery"> 2 day delivery</div>
+                    <label>
+                        <input class="cart-checkbox" onclick="sum(this, {{prices.Cpu}})" type="checkbox" id="CPU" value="{{prices.Cpu}}"> add to cart
+                    </label>
+                </div>
+            </div>
+        </div>
     </div>
-<div class="container">
+    <script type="text/javascript">
+    let total = parseFloat(document.getElementById('total').value);
+    function sum(box, productPrice) {
+        console.log("Box checked:", box.checked);
+        console.log("Product price:", productPrice);
 
-    <div class="product-list">
-        <div class="product-form">
-            <img class="product-pic" src="p1.png" width="200" height="200">
-            <div class="prodcut-type">Dress</div>
-            <div class="product-cost">$20.99</div>
-            <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Dress" value="20.99"> add to cart </label>
-        </div>
-    
-        <div class="product-form">
-            <img class="product-pic" src="p2.png" width="200" height="200">
-            <div class="prodcut-type">Mouse</div>
-            <div class="product-cost">$15.99</div>
-            <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Mouse" value="15.99"> add to cart </label>
-        </div>
-    
-        <div class="product-form">
-            <img class="product-pic" src="p3.png" width="200" height="200">
-            <div class="prodcut-type">Keyboard</div>
-            <div class="product-cost">$30.99</div>
-            <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Keyboard" value="30.99"> add to cart </label>
-        </div>
-    
-        <div class="product-form">
-            <img class="product-pic" src="p4.png" width="200" height="200">
-            <div class="prodcut-type">Sweatshirt</div>
-            <div class="product-cost">$25.99</div>
-            <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Sweatshirt" value="25.99"> add to cart </label>
-        </div>
-    
-        <div class="product-form">
-            <img class="product-pic" src="p5.png" width="200" height="200">
-            <div class="prodcut-type">Nikon Camera</div>
-            <div class="product-cost">$1200.99</div>
-            <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Nikon Camera" value="1200.99"> add to cart </label>
-        </div>
-    
-        <div class="product-form">
-            <img class="product-pic" src="p6.png" width="200" height="200">
-            <div class="prodcut-type">Iphone</div>
-            <div class="product-cost">$1300.99</div>
-            <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Iphone" value="1300.99"> add to cart </label>
-        </div>
-    
-        <div class="product-form">
-            <img class="product-pic" src="p7.png" width="200" height="200">
-            <div class="prodcut-type">Vacuum Cleaner</div>
-            <div class="product-cost">$13.99</div>
-            <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="Vacuum Cleaner" value="13.99"> add to cart </label>
-        </div>
-    
-        <div class="product-form">
-            <img class="product-pic" src="cpu.png" width="200" height="200">
-            <div class="prodcut-type">CPU</div>
-            <div class="product-cost">$13.99</div>
-            <div class="product-delivery"> 2 day delivery</div>
-            <label><input class="cart-checkbox" onclick="sum(this)" type="checkbox" id="CPU" value="13.99"> add to cart </label>
-        </div>
-        </div>
-</div>
-<script type="text/javascript">
-   let values = new Array(8); // 배열을 선언하여 값 불러오기
+        if (!isNaN(productPrice)) {
+            if (box.checked) {
+                total += parseFloat(productPrice);
+            } else {
+                total -= parseFloat(productPrice);
+            }
 
-   values[0] = parseFloat(document.getElementById('Dress').value);
-   values[1] = parseFloat(document.getElementById('Mouse').value);
-   values[2] = parseFloat(document.getElementById('Keyboard').value);
-    values[3] = parseFloat(document.getElementById('Sweatshirt').value);
-    values[4] = parseFloat(document.getElementById('Nikon Camera').value);
-    values[5] = parseFloat(document.getElementById('Iphone').value);
-    values[6] = parseFloat(document.getElementById('Vacuum Cleaner').value);
-    values[7] = parseFloat(document.getElementById('CPU').value);
-   
-   let total = parseFloat(document.getElementById('total').value);
-
-   function sum(box) {
-      if(box.checked){
-    total += parseFloat(box.value);
-    }else{
-    total -= parseFloat(box.value);
+            document.getElementById('total').value = total.toFixed(2);
+            localStorage.setItem('key', total);
+        } else {
+            console.error("Invalid product price:", productPrice);
+        }
     }
-      document.getElementById('total').value = total.toFixed(2);
-      localStorage.setItem('key',total);
-   }
+    </script>
 
-    
-
-
-</script>
 </body>
+
 </html>
