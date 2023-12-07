@@ -88,10 +88,6 @@ app.get('/home', async (req, res) => {
             Sweatshirt: user.Sweatshirt,
             Vacuum: user.Vacuum,
         };
-
-        // Log prices to the console
-        console.log('Prices from the server:', prices);
-
         res.render('home', { prices });
     } catch (error) {
         console.error(error);
